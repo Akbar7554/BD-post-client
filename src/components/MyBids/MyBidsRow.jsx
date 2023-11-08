@@ -1,5 +1,4 @@
 
-
 const MyBidsRow = ({ bid }) => {
     const { jobTitle, price, userEmail, buyerEmail, date } = bid
   return (
