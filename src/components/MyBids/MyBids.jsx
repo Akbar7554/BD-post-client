@@ -15,7 +15,6 @@ const MyBids = () => {
       })
   }, [])
     console.log(user.email);
-    
     const jobInfo = useLoaderData()
     const { jobTitle, price, userEmail, buyerEmail, date } = jobInfo
     const [job, setJob] = useState(jobInfo)
