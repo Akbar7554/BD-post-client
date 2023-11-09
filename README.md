@@ -19,3 +19,5 @@ Currently, two official plugins are available:
 - user see his her data in tab data wise. tab data card have a bid button . if user click bid button it will go another page . user see some information and a form and bid now button. if user click bid now button it will go my bids page user see her bid information.
 - job request route show some data where job provider bid request accept and delete.
 
+
+# client-side live link : https://bd-post-e405e.web.app/
