@@ -1,5 +1,5 @@
 import logo from "../../assets/logo.png"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../providers/AuthProvider"
 import toast, { Toaster } from "react-hot-toast"
@@ -12,6 +12,9 @@ import {
 import app from "../../Firebase/firebase.config"
 
 const Register = () => {
+    useEffect(() => {
+      document.title = "BD Post | Register"
+    }, [])
   const registerImage =
     "https://drive.google.com/uc?export=view&id=1KZ_Ub_2lZ0dHbKV0fAIhxVhiQA183RCz"
 

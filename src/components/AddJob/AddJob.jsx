@@ -1,8 +1,11 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import Swal from "sweetalert2"
 import { AuthContext } from "../../providers/AuthProvider"
 import { useNavigate } from "react-router-dom"
 const AddJob = () => {
+    useEffect(() => {
+      document.title = "BD Post | Add Job"
+    }, [])
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
   const handleAddJob = (e) => {

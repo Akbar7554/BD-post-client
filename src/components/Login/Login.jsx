@@ -1,11 +1,15 @@
 import logo from "../../assets/logo.png"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import toast, { Toaster } from "react-hot-toast"
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth"
+import axios from "axios"
 import { AuthContext } from "../../providers/AuthProvider"
 import app from "../../Firebase/firebase.config"
 const Login = () => {
+    useEffect(() => {
+      document.title = "BD Post | Login"
+    }, [])
   const loginImage =
         "https://drive.google.com/uc?export=view&id=1KZ_Ub_2lZ0dHbKV0fAIhxVhiQA183RCz"
     const auth = getAuth(app)
@@ -19,7 +23,7 @@ const Login = () => {
         .then((result) => {
           const user = result.user
             console.log(user)
-      navigate(location?.state ? location.state : "/")
+      navigate(location?.state ? location?.state : "/")
           toast.success("Account Created Successfully!")
         })
         .catch((error) => {
@@ -36,7 +40,20 @@ const Login = () => {
       console.log(email, password)
       signIn(email, password)
         .then((result) => {
-          console.log(result.user)
+            const loggedInUser = result.user
+            console.log(loggedInUser)
+            const user = {email}
+            // get axios token
+            axios.post("http://localhost:5000/jwt", user, {withCredentials: true})
+            .then(res => {
+                console.log(res.data);
+                if (res.data.success) {
+                    navigate(location?.accessToken ? location.accessToken : "/")
+                        navigate(location?.state ? location.state : "/")
+                    }
+            })
+
+
           toast.success("Successfully SignIn", {
             style: {
               padding: "16px",
@@ -48,8 +65,8 @@ const Login = () => {
               secondary: "#FFFAEE",
             },
           })
-          navigate(location?.state ? location.state : "/")
-          navigate(location?.accessToken ? location.accessToken : "/")
+        //   navigate(location?.state ? location.state : "/")
+        //   navigate(location?.accessToken ? location.accessToken : "/")
         })
         .catch((error) => {
           console.error(error)

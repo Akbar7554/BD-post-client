@@ -3,6 +3,9 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../providers/AuthProvider"
 import Swal from "sweetalert2";
 const MyPostedJobs = () => {
+    useEffect(() => {
+      document.title = "BD Post | My Posted Job"
+    }, [])
     const { user } = useContext(AuthContext)
     const [jobs, setJobs] = useState([])
     const url = `http://localhost:5000/jobs?email=${user.email}`

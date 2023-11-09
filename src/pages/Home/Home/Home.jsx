@@ -3,13 +3,16 @@ import Banner from "../Banner/Banner"
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
 import "react-tabs/style/react-tabs.css"
 import TabData from "../../TabData/TabData"
-import { useContext, useState } from "react"
-import Button from "../../Button/Button"
+import { useContext, useEffect, useState } from "react"
 import ExtraSection1 from "../../../components/ExtraSection1/ExtraSection1"
 import ExtraSection2 from "../../../components/ExtraSection2/ExtraSection2"
 import { FaRegThumbsUp } from "react-icons/fa"
 import { AuthContext } from "../../../providers/AuthProvider"
+import Banner2 from "../Banner/Banner2"
 const Home = () => {
+    useEffect(() => {
+        document.title = "BD Post | Home"
+    },[])
   const { user } = useContext(AuthContext)
   const tabsData = useLoaderData()
   console.log(tabsData)
@@ -31,8 +34,9 @@ const Home = () => {
     
   return (
     <div className="">
-      <Banner></Banner>
-      <div>
+          {/* <Banner></Banner> */}
+          <Banner2></Banner2>
+      <div className="p-5">
         <Tabs>
           <TabList>
             <Tab>Web Development</Tab>

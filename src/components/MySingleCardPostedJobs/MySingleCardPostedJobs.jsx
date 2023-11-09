@@ -1,11 +1,12 @@
 import { FiEdit } from "react-icons/fi"
 import { AiFillDelete } from "react-icons/ai"
 import Swal from "sweetalert2"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { AuthContext } from "../../providers/AuthProvider"
 import { ImCross } from "react-icons/im"
 import { Link } from "react-router-dom"
 const MySingleCardPostedJobs = ({ job, handleDelete }) => {
+    
   console.log(job)
   
   const {

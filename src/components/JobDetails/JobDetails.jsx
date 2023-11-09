@@ -1,9 +1,12 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { useLoaderData, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../providers/AuthProvider"
 import Swal from "sweetalert2"
 
 const JobDetails = () => {
+    useEffect(() => {
+      document.title = "BD Post | Job Details"
+    }, [])
     const { user } = useContext(AuthContext)
   const navigate = useNavigate()
   const jobData = useLoaderData()
@@ -60,8 +63,8 @@ const JobDetails = () => {
         })
     }
   return (
-    <div className="flex justify-around items-center">
-      <div>
+    <div className="flex-reverse md:flex justify-around items-center">
+      <div className="p-5">
         <div className="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg">
           <div className="border-t border-gray-200">
             <dl>
