@@ -4,18 +4,17 @@ import MyBidsRow from "./MyBidsRow"
 import axios from "axios"
 
 const MyBids = () => {
-    useEffect(() => {
-      document.title = "BD Post | My Bids"
-    }, [])
+  useEffect(() => {
+    document.title = "BD Post | My Bids"
+  }, [])
   const { user } = useContext(AuthContext)
-    const [bids, setBids] = useState([])
-  const url = `http://localhost:5000/bids?email=${user?.email}`
-    useEffect(() => {
-        axios.get(url, {withCredentials: true})
-            .then(res => {
-                setBids(res.data)
-                console.log(setBids);
-        })
+  const [bids, setBids] = useState([])
+  const url = `https://bd-post-server.vercel.app/bids?email=${user?.email}`
+  useEffect(() => {
+    axios.get(url, { withCredentials: true }).then((res) => {
+      setBids(res.data)
+      console.log(setBids)
+    })
     // fetch(url, {credentials: true})
     //   .then((res) => res.json())
     //   .then((data) => {
@@ -37,9 +36,11 @@ const MyBids = () => {
             </tr>
           </thead>
           <tbody>
-            { user?.email ? bids.map((bid) => (
-              <MyBidsRow key={bid._id} bid={bid}></MyBidsRow>
-            )) : ""}
+            {user?.email
+              ? bids.map((bid) => (
+                  <MyBidsRow key={bid._id} bid={bid}></MyBidsRow>
+                ))
+              : ""}
           </tbody>
         </table>
       </div>

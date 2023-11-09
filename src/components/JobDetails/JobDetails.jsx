@@ -4,10 +4,10 @@ import { AuthContext } from "../../providers/AuthProvider"
 import Swal from "sweetalert2"
 
 const JobDetails = () => {
-    useEffect(() => {
-      document.title = "BD Post | Job Details"
-    }, [])
-    const { user } = useContext(AuthContext)
+  useEffect(() => {
+    document.title = "BD Post | Job Details"
+  }, [])
+  const { user } = useContext(AuthContext)
   const navigate = useNavigate()
   const jobData = useLoaderData()
   const {
@@ -19,49 +19,49 @@ const JobDetails = () => {
     maximumPrice,
     description,
     email,
-    } = jobData
-    
-    const handleAddBidInfo = e => {
-      e.preventDefault()
+  } = jobData
 
-      const form = e.target
-      const jobTitle = form.jobTitle.value
-      const price = form.price.value
-      const userEmail = form.userEmail.value
-      const buyerEmail = form.buyerEmail.value
-      const date = form.date.value
+  const handleAddBidInfo = (e) => {
+    e.preventDefault()
 
-      const newBid = {
-        jobTitle,
-        price,
-        userEmail,
-        buyerEmail,
-        date,
-      }
-      console.log(newBid)
+    const form = e.target
+    const jobTitle = form.jobTitle.value
+    const price = form.price.value
+    const userEmail = form.userEmail.value
+    const buyerEmail = form.buyerEmail.value
+    const date = form.date.value
 
-      // data send to the server
-      fetch("http://localhost:5000/bids", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(newBid),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data)
-          if (data.insertedId) {
-            navigate(location?.state ? location.state : "/my-bids")
-            Swal.fire({
-              title: "success!",
-              text: "Jobs Added Successfully!",
-              icon: "success",
-              confirmButtonText: "Ok",
-            })
-          }
-        })
+    const newBid = {
+      jobTitle,
+      price,
+      userEmail,
+      buyerEmail,
+      date,
     }
+    console.log(newBid)
+
+    // data send to the server
+    fetch("https://bd-post-server.vercel.app/bids", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newBid),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        if (data.insertedId) {
+          navigate(location?.state ? location.state : "/my-bids")
+          Swal.fire({
+            title: "success!",
+            text: "Jobs Added Successfully!",
+            icon: "success",
+            confirmButtonText: "Ok",
+          })
+        }
+      })
+  }
   return (
     <div className="flex-reverse md:flex justify-around items-center">
       <div className="p-5">

@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/jobs"),
+        loader: () => fetch("https://bd-post-server.vercel.app/jobs"),
       },
       {
         path: "/add-job",
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(`https://bd-post-server.vercel.app/jobs/${params.id}`),
       },
       {
         path: "/my-bids",
@@ -74,7 +74,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(`https://bd-post-server.vercel.app/jobs/${params.id}`),
       },
     ],
   },

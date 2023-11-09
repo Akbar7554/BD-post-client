@@ -4,9 +4,9 @@ import Swal from "sweetalert2"
 import { AuthContext } from "../../providers/AuthProvider"
 
 const UpdateJob = () => {
-    useEffect(() => {
-      document.title = "BD Post | Update Job"
-    }, [])
+  useEffect(() => {
+    document.title = "BD Post | Update Job"
+  }, [])
   const navigate = useNavigate()
   const { user } = useContext(AuthContext)
   const updateJob = useLoaderData()
@@ -39,7 +39,7 @@ const UpdateJob = () => {
       description,
     }
 
-    fetch(`http://localhost:5000/jobs/${_id}`, {
+    fetch(`https://bd-post-server.vercel.app/jobs/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

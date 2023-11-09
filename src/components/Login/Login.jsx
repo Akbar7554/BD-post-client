@@ -7,83 +7,85 @@ import axios from "axios"
 import { AuthContext } from "../../providers/AuthProvider"
 import app from "../../Firebase/firebase.config"
 const Login = () => {
-    useEffect(() => {
-      document.title = "BD Post | Login"
-    }, [])
+  useEffect(() => {
+    document.title = "BD Post | Login"
+  }, [])
   const loginImage =
-        "https://drive.google.com/uc?export=view&id=1KZ_Ub_2lZ0dHbKV0fAIhxVhiQA183RCz"
-    const auth = getAuth(app)
-    const provider = new GoogleAuthProvider()
-    const { signIn } = useContext(AuthContext)
-    const location = useLocation()
-    const navigate = useNavigate()
+    "https://drive.google.com/uc?export=view&id=1KZ_Ub_2lZ0dHbKV0fAIhxVhiQA183RCz"
+  const auth = getAuth(app)
+  const provider = new GoogleAuthProvider()
+  const { signIn } = useContext(AuthContext)
+  const location = useLocation()
+  const navigate = useNavigate()
 
-    const handleGoogleLogin = () => {
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          const user = result.user
-            console.log(user)
-      navigate(location?.state ? location?.state : "/")
-          toast.success("Account Created Successfully!")
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    }
-    console.log("location in login page", location)
-    const handleLogin = (e) => {
-      e.preventDefault()
-      console.log(e.currentTarget)
-      const form = new FormData(e.currentTarget)
-      const email = form.get("email")
-      const password = form.get("password")
-      console.log(email, password)
-      signIn(email, password)
-        .then((result) => {
-            const loggedInUser = result.user
-            console.log(loggedInUser)
-            const user = {email}
-            // get axios token
-            axios.post("http://localhost:5000/jwt", user, {withCredentials: true})
-            .then(res => {
-                console.log(res.data);
-                if (res.data.success) {
-                    navigate(location?.accessToken ? location.accessToken : "/")
-                        navigate(location?.state ? location.state : "/")
-                    }
-            })
-
-
-          toast.success("Successfully SignIn", {
-            style: {
-              padding: "16px",
-              color: "white",
-              backgroundColor: "rgb(74 222 128)",
-            },
-            iconTheme: {
-              primary: "black",
-              secondary: "#FFFAEE",
-            },
+  const handleGoogleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user
+        console.log(user)
+        navigate(location?.state ? location?.state : "/")
+        toast.success("Account Created Successfully!")
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+  console.log("location in login page", location)
+  const handleLogin = (e) => {
+    e.preventDefault()
+    console.log(e.currentTarget)
+    const form = new FormData(e.currentTarget)
+    const email = form.get("email")
+    const password = form.get("password")
+    console.log(email, password)
+    signIn(email, password)
+      .then((result) => {
+        const loggedInUser = result.user
+        console.log(loggedInUser)
+        const user = { email }
+        // get axios token
+        axios
+          .post("https://bd-post-server.vercel.app/jwt", user, {
+            withCredentials: true,
           })
+          .then((res) => {
+            console.log(res.data)
+            if (res.data.success) {
+              navigate(location?.accessToken ? location.accessToken : "/")
+              navigate(location?.state ? location.state : "/")
+            }
+          })
+
+        toast.success("Successfully SignIn", {
+          style: {
+            padding: "16px",
+            color: "white",
+            backgroundColor: "rgb(74 222 128)",
+          },
+          iconTheme: {
+            primary: "black",
+            secondary: "#FFFAEE",
+          },
+        })
         //   navigate(location?.state ? location.state : "/")
         //   navigate(location?.accessToken ? location.accessToken : "/")
+      })
+      .catch((error) => {
+        console.error(error)
+        toast.error("Your email or password do not match. Please try again", {
+          style: {
+            padding: "16px",
+            color: "white",
+            backgroundColor: "rgb(239 68 68)",
+            textAlign: "center",
+          },
+          iconTheme: {
+            primary: "black",
+            secondary: "#FFFAEE",
+          },
         })
-        .catch((error) => {
-          console.error(error)
-          toast.error("Your email or password do not match. Please try again", {
-            style: {
-              padding: "16px",
-              color: "white",
-              backgroundColor: "rgb(239 68 68)",
-              textAlign: "center",
-            },
-            iconTheme: {
-              primary: "black",
-              secondary: "#FFFAEE",
-            },
-          })
-        })
-    }
+      })
+  }
   return (
     <div>
       <Toaster />
@@ -133,14 +135,14 @@ const Login = () => {
                   <div className="mx-auto max-w-xs">
                     <input
                       className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                          type="email"
-                                          name="email"
+                      type="email"
+                      name="email"
                       placeholder="Email"
                     />
                     <input
                       className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                          type="password"
-                                          name="password"
+                      type="password"
+                      name="password"
                       placeholder="Password"
                     />
                     <button

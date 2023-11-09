@@ -8,7 +8,7 @@ const BidRequests = () => {
   }, [])
   const { user } = useContext(AuthContext)
   const [bids, setBids] = useState([])
-  const url = `http://localhost:5000/bids/buyerEmail?email=${user?.email}`
+  const url = `https://bd-post-server.vercel.app/bids/buyerEmail?email=${user?.email}`
   useEffect(() => {
     axios.get(url, { withCredentials: true }).then((res) => {
       setBids(res.data)

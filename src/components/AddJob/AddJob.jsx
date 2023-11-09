@@ -3,9 +3,9 @@ import Swal from "sweetalert2"
 import { AuthContext } from "../../providers/AuthProvider"
 import { useNavigate } from "react-router-dom"
 const AddJob = () => {
-    useEffect(() => {
-      document.title = "BD Post | Add Job"
-    }, [])
+  useEffect(() => {
+    document.title = "BD Post | Add Job"
+  }, [])
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
   const handleAddJob = (e) => {
@@ -32,7 +32,7 @@ const AddJob = () => {
     console.log(newJob)
 
     // data send to the server
-    fetch("http://localhost:5000/jobs", {
+    fetch("https://bd-post-server.vercel.app/jobs", {
       method: "POST",
       headers: {
         "content-type": "application/json",
