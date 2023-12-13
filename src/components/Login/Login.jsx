@@ -45,7 +45,7 @@ const Login = () => {
         const user = { email }
         // get axios token
         axios
-          .post("https://bd-post-server.vercel.app/jwt", user, {
+          .post("http://localhost:5000/jwt", user, {
             withCredentials: true,
           })
           .then((res) => {

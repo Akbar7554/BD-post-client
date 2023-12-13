@@ -1,34 +1,36 @@
-
 import logo from "../../../assets/logo.png"
 import { useContext } from "react"
-import { Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import { AuthContext } from "../../../providers/AuthProvider"
+import { BsChatDotsFill } from "react-icons/bs"
+import { MdGTranslate } from "react-icons/md"
+
 // import { useState, useEffect } from "react"
 const Navbar = () => {
-    // const [theme, setTheme] = useState("light")
-    // useEffect(() => {
-    //   if (theme === "dark") {
-    //     document.documentElement.classList.add("dark")
-    //   } else {
-    //     document.documentElement.classList.remove("dark")
-    //   }
-    // }, [theme])
+  // const [theme, setTheme] = useState("light")
+  // useEffect(() => {
+  //   if (theme === "dark") {
+  //     document.documentElement.classList.add("dark")
+  //   } else {
+  //     document.documentElement.classList.remove("dark")
+  //   }
+  // }, [theme])
 
-    // const handleThemeSwitch = () => {
-    //   setTheme(theme === "dark" ? "light" : "dark")
-    // }
+  // const handleThemeSwitch = () => {
+  //   setTheme(theme === "dark" ? "light" : "dark")
+  // }
 
-    const { user, userSignOut, createUser } = useContext(AuthContext)
-    const handleSignOut = () => {
-      userSignOut()
-        .then((result) => {
-          const user = result.user
-          console.log(user)
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    }
+  const { user, userSignOut, createUser } = useContext(AuthContext)
+  const handleSignOut = () => {
+    userSignOut()
+      .then((result) => {
+        const user = result.user
+        console.log(user)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
   const links = (
     <>
       <li>
@@ -98,7 +100,13 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="navbar-end">
+          <div className="navbar-end">
+        <Link to="/translate">
+          <MdGTranslate className="mr-2 text-3xl text-sky-400"></MdGTranslate>
+        </Link>
+        <Link to="/chat">
+          <BsChatDotsFill className="mr-2 text-3xl text-green-400"></BsChatDotsFill>
+        </Link>
         <Link className="border-2 mr-2 text-[#31A8EB] font-semibold border-[#31A8EB] rounded-xl text-xs md:text-md px-2 py-2 md:text-lg md:px-5 md:py-3 hover:text-white hover:bg-[#31A8EB]">
           Search Jobs
         </Link>
@@ -106,7 +114,7 @@ const Navbar = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src={user.photoURL} />
+                <img src={user?.photoURL} />
               </div>
             </label>
             <ul

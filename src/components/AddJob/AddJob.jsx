@@ -32,7 +32,7 @@ const AddJob = () => {
     console.log(newJob)
 
     // data send to the server
-    fetch("https://bd-post-server.vercel.app/jobs", {
+    fetch("http://localhost:5000/jobs", {
       method: "POST",
       headers: {
         "content-type": "application/json",

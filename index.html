@@ -18,5 +18,16 @@
     <script type="module" src="/src/main.jsx"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
     <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        // Now you can use axios globally
+        axios.get('https://api.example.com/data')
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    </script>
   </body>
 </html>

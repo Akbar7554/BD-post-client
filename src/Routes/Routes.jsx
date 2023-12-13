@@ -12,6 +12,8 @@ import PrivateRoutes from "./PrivateRoutes"
 import MySingleCardPostedJobs from "../components/MySingleCardPostedJobs/MySingleCardPostedJobs"
 import UpdateJob from "../components/UpdateJob/UpdateJob"
 import ErrorPage from "../pages/ErrorPage/ErrorPage"
+import Chat from "../components/Chat/Chat"
+import Translate from "../components/Translate/Translate"
 
 const router = createBrowserRouter([
   {
@@ -22,7 +24,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("https://bd-post-server.vercel.app/jobs"),
+        loader: () => fetch("http://localhost:5000/jobs"),
       },
       {
         path: "/add-job",
@@ -48,7 +50,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`https://bd-post-server.vercel.app/jobs/${params.id}`),
+          fetch(`http://localhost:5000/jobs/${params.id}`),
       },
       {
         path: "/my-bids",
@@ -74,7 +76,23 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`https://bd-post-server.vercel.app/jobs/${params.id}`),
+          fetch(`http://localhost:5000/jobs/${params.id}`),
+      },
+      {
+        path: "/chat",
+        element: (
+          <PrivateRoutes>
+            <Chat></Chat>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/translate",
+        element: (
+          <PrivateRoutes>
+            <Translate></Translate>
+          </PrivateRoutes>
+        ),
       },
     ],
   },

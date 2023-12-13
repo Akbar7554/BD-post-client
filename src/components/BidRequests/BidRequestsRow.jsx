@@ -5,7 +5,7 @@ const BidRequestsRow = ({ bid }) => {
   const { _id, jobTitle, price, userEmail, buyerEmail, date, status } = bid
   const { user } = useContext(AuthContext)
   const [bids, setBids] = useState([])
-  const url = `https://bd-post-server.vercel.app/bids/buyerEmail?email=${user?.email}`
+  const url = `http://localhost:5000/bids/buyerEmail?email=${user?.email}`
   useEffect(() => {
     axios.get(url, { withCredentials: true }).then((res) => {
       setBids(res.data)
@@ -18,7 +18,7 @@ const BidRequestsRow = ({ bid }) => {
     //   })
   }, [url])
   const handleReject = (id) => {
-    fetch(`https://bd-post-server.vercel.app/bids/${id}`, {
+    fetch(`http://localhost:5000/bids/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
