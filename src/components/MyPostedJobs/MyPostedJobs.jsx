@@ -8,7 +8,7 @@ const MyPostedJobs = () => {
   }, [])
   const { user } = useContext(AuthContext)
   const [jobs, setJobs] = useState([])
-  const url = `http://localhost:5000/jobs?email=${user.email}`
+  const url = `https://bd-post-server.vercel.app/jobs?email=${user.email}`
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -29,7 +29,7 @@ const MyPostedJobs = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         //   console.log("Deleted")
-        fetch(`http://localhost:5000/jobs/${id}`, {
+        fetch(`https://bd-post-server.vercel.app/jobs/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

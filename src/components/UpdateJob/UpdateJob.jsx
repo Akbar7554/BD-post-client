@@ -39,7 +39,7 @@ const UpdateJob = () => {
       description,
     }
 
-    fetch(`http://localhost:5000/jobs/${_id}`, {
+    fetch(`https://bd-post-server.vercel.app/jobs/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

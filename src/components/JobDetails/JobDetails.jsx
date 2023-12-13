@@ -41,7 +41,7 @@ const JobDetails = () => {
     console.log(newBid)
 
     // data send to the server
-    fetch("http://localhost:5000/bids", {
+    fetch("https://bd-post-server.vercel.app/bids", {
       method: "POST",
       headers: {
         "content-type": "application/json",
